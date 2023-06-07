@@ -2,15 +2,14 @@ import string
 import random
 from telegram.ext import Updater, CommandHandler
 
-# Inserisci il tuo token qui
-TOKEN = "5782202005:AAHzE6z6aNh1__LODebMzNkl4Usf2M0YQic"
+TOKEN = "" # TOKEN 
 
 def start(update, context):
     from funzioni import text_start
     text = text_start()
     update.message.reply_text(text)
 
-def password(update, context):
+def password(update, context):                              # "password" function, to generate password of N chars
     mod = context.args[0] if context.args else "medio"
 
     if mod == 'facile':
@@ -33,7 +32,7 @@ def password(update, context):
     pw = p(lunghezza)
     context.bot.send_message(chat_id=update.effective_chat.id, text=f"PASSWORD GENERATA CON SUCCESSO: \n\n{pw}")
 
-def consiglio(update, context):
+def consiglio(update, context):     # "hint" function, to generate a casual hint
     from funzioni import frasi
     frasi = frasi()
     frase = random.choice(frasi)
@@ -41,7 +40,7 @@ def consiglio(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text=f"Consiglio:")
     context.bot.send_message(chat_id=update.effective_chat.id, text=f"{frase}")
 
-def strength_password(update, context):
+def strength_password(update, context):             # "strenght_password", to verify the strenght of your password!
     from funzioni import forza_password
     try:
         chiave = context.args[0]
@@ -53,7 +52,7 @@ def strength_password(update, context):
 chiavi = []
 names = []
 
-def save_password(update, context):
+def save_password(update, context):         # "save_password", to save your password in a list
     global chiavi, names
     pas = context.args[0]
     name = context.args[1]
